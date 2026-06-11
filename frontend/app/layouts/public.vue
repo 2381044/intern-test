@@ -16,11 +16,13 @@
 
       <nav class="hidden md:flex items-center space-x-8 text-xs font-medium">
         <a href="/" class="hover:underline transition text-xs">Home</a>
-        <a href="#" class="hover:underline transition text-xs">Document</a>
-        <a
-          href="/contact"
-          target="_blank"
-          class="hover:underline transition text-xs"
+        <a href="/articles" class="hover:underline transition text-xs"
+          >Article</a
+        >
+        <a href="/portfolio" class="hover:underline transition text-xs"
+          >Portfolio</a
+        >
+        <a href="/contact" class="hover:underline transition text-xs"
           >Contact</a
         >
       </nav>
@@ -28,15 +30,14 @@
       <div>
         <el-button
           tag="a"
-          href="https://www.google.com"
-          target="_blank"
+          href="/login"
           type="plain"
           round
           size="small"
           plain
           class="!text-black"
         >
-          Purchase Now
+          Sign In
         </el-button>
       </div>
     </header>
@@ -59,8 +60,7 @@
           <div>
             <el-button
               tag="a"
-              href="https://www.google.com"
-              target="_blank"
+              href="/contact"
               type="plain"
               round
               size="small"

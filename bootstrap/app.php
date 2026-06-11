@@ -25,6 +25,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->validateCsrfTokens(except: [
             'api/public/visitor',
             'api/contact',
+             'login',         // Tambahkan ini
+            'attachments',   // Tambahkan ini
+            'articles',      // Tambahkan ini
+            'api/*' 
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

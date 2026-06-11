@@ -29,7 +29,14 @@ export const useArticleStore = defineStore('article', {
         const config = useRuntimeConfig()
         const apiBase = config.public.apiBase.replace(/\/$/, '')
         const response = await $fetch<PublicArticle[] | { data: PublicArticle[] }>(
-          `${apiBase}/api/public/articles`
+          `${apiBase}/api/public/articles`,
+          {
+            // 🌟 MENAMBAHKAN HEADER AGAR LARAVEL MENGENALI REQ API
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+          }
         )
         const data = Array.isArray(response) ? response : response.data ?? []
         this.articles = data
@@ -42,7 +49,13 @@ export const useArticleStore = defineStore('article', {
     async getArticle(slug: string) {
       const config = useRuntimeConfig()
       const apiBase = config.public.apiBase.replace(/\/$/, '')
-      return $fetch<PublicArticle>(`${apiBase}/api/public/articles/${slug}`)
+      return $fetch<PublicArticle>(`${apiBase}/api/public/articles/${slug}`, {
+        // 🌟 MENAMBAHKAN HEADER DI DETAIL ARTIKEL
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
     },
     async getPopularArticles(exclude?: string) {
       this.loadingPopular = true
@@ -51,7 +64,14 @@ export const useArticleStore = defineStore('article', {
         const apiBase = config.public.apiBase.replace(/\/$/, '')
         const params = exclude ? `?exclude=${exclude}` : ''
         const response = await $fetch<PublicArticle[]>(
-          `${apiBase}/api/public/articles/popular${params}`
+          `${apiBase}/api/public/articles/popular${params}`,
+          {
+            // 🌟 MENAMBAHKAN HEADER DI ARTIKEL POPULER
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+          }
         )
         this.popularArticles = response
         return response
